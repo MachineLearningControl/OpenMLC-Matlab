@@ -64,7 +64,7 @@ function [m,sm,stdepth]=extract_subtree(m,mindepth,subtreedepthmax,maxdepth)
     rightpar=cumsum(sm==')');
     cdepth=leftpar-rightpar;
     stdepth=max(cdepth);
-    m=[m(1:n-1) '�' m(n2+1:end)];
+    m=[m(1:n-1) '$' m(n2+1:end)];
     end
 end
 

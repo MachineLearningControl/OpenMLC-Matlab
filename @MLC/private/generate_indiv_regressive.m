@@ -1,15 +1,15 @@
 function [m]=generate_indiv_regressive(m,gen_param,type)
-%GENERATE_INDIV_REGRESSIVE    Private function of the MLC CLASS. Grow individuals from seed '�';
+%GENERATE_INDIV_REGRESSIVE    Private function of the MLC CLASS. Grow individuals from seed '$';
 %    [M]=generate_indiv_regressive(M,GEN_PARAM,TYPE) seriously... that's a
-%    PRIVATE function... Well, basically a seed '�' is placed in a string.
+%    PRIVATE function... Well, basically a seed '$' is placed in a string.
 %    The function detect it and replace by one posible node. This node can
 %    be a "leaf" (constant or tree input), or an operator. If an operator
-%    is selected then as many seeds '�' as arguments needed are placed and
+%    is selected then as many seeds '$' as arguments needed are placed and
 %    the function is called again. 
 %
-%    M is a string containing a seed. Initial call should be M='�', but it
+%    M is a string containing a seed. Initial call should be M='$', but it
 %    can also be a truncated individual, during a mutation for instance.
-%    (Ex : '(+ S1 (* � S2))' will grow from the �).
+%    (Ex : '(+ S1 (* $ S2))' will grow from the $).
 %
 %    GEN_PARAM contains the parameters from the MLC object.
 %    (obj.parameters)
@@ -59,7 +59,7 @@ function [m]=generate_indiv_regressive(m,gen_param,type)
          maxdepth=gen_param.maxdepth;
     end
     
-    idx=strfind(m,'�');
+    idx=strfind(m,'$');
     if isempty(idx)    %% No seed...
         return
     else
@@ -74,12 +74,12 @@ function [m]=generate_indiv_regressive(m,gen_param,type)
        
         leftpar=cumsum(m=='(');
         rightpar=cumsum(m==')');  
-        currank=(m=='�').*(leftpar-rightpar); %% detecting the depth of the seed.
+        currank=(m=='$').*(leftpar-rightpar); %% detecting the depth of the seed.
         %% Choose next node.
         nbop=length(gen_param.opset);
         if max(currank)>=maxdepth   %% Cannot go deeper => leaf
             choice=1;
-        elseif (max(currank)<mindepth && isempty(strfind(endstr,'�')))...
+        elseif (max(currank)<mindepth && isempty(strfind(endstr,'$')))...
                 || (max(currank)<maxdepth && type==3) %% cannot stop here => operator
             choice=0;      
         else
@@ -99,11 +99,11 @@ function [m]=generate_indiv_regressive(m,gen_param,type)
                 nbop=length(gen_param.opset);
                 choice2=ceil(rand*(nbop));
                 if gen_param.opset(choice2).nbarg==1
-                    m=[begstr '(' gen_param.opset(choice2).op ' �)' endstr];
+                    m=[begstr '(' gen_param.opset(choice2).op ' $)' endstr];
                     m=generate_indiv_regressive(m,gen_param,type);
                
                 elseif gen_param.opset(choice2).nbarg==2
-                    m=[begstr '(' gen_param.opset(choice2).op ' � �)' endstr];
+                    m=[begstr '(' gen_param.opset(choice2).op ' $ $)' endstr];
                     [m]=generate_indiv_regressive(m,gen_param,type);
                     [m]=generate_indiv_regressive(m,gen_param,type);
                 end

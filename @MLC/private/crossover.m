@@ -34,8 +34,8 @@ function [m1,m2,fail]=crossover(m1,m2,gen_param)
     else
         fail=0;
         %% Replacing subtrees
-        m1=strrep(m1,'�',sm2);
-        m2=strrep(m2,'�',sm1);
+        m1=strrep(m1,'$',sm2);
+        m2=strrep(m2,'$',sm1);
         if gen_param.preevaluation
             eval(['peval=@' gen_param.preev_function ';']);
             f=peval;

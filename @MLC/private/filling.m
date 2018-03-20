@@ -4,9 +4,9 @@ verb=gen_param.verbose(1);
 while indiv_generated<n;
     if verb>1;fprintf('Generating individual %i\n',indiv_generated+1);end
     if gen_param.controls==1
-        m='�';
+        m='$';
     else
-       m=['(root' repmat(' �',[1 gen_param.controls]) ')'];
+       m=['(root' repmat(' $',[1 gen_param.controls]) ')'];
     end
     for i=1:gen_param.controls
         [m]=generate_indiv_regressive(m,gen_param,type); % all individual have maxsizefirst
