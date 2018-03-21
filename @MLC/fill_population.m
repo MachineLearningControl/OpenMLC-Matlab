@@ -96,7 +96,6 @@ idx_tofill=find(to_fill);
                 idx=choose_individual(mlc,1);                                             %% choose one individual
                 if verb>3;fprintf('%s\n',mlc.population(ngen).individuals{idx(1),1});end
                 [new_ind,fail]=mutate(mlc.population(ngen).individuals{idx(1),1},mlc.parameters);     %% Creates mutated individual
-               fail
                 mlc.population(ngen+1).individuals{idx_tofill(i),1}=new_ind;
                 if mlc.parameters.simplify
                     mlc.population(ngen+1).individuals{idx_tofill(i),1}=simplify_my_LISP(mlc.population(ngen+1).individuals{idx_tofill(i),1},mlc.parameters);

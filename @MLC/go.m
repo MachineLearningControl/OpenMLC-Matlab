@@ -66,6 +66,9 @@ stop=1;
         mlc.show_best_indiv;
         %figure(502)
         %mlc.show_stats(0);
+        if fig==1
+            figure(666)
+        end
         mlc.show_all(fig);
         drawnow
         end

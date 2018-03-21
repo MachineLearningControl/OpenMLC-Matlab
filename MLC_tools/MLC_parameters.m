@@ -115,7 +115,7 @@ methods
         parameters.leaf_prob=0.3;
         parameters.range=10;
         parameters.precision=4;
-        parameters.opsetrange=1:9; 
+        parameters.opsetrange=[1:3 9]; 
         parameters.formal=0;
         parameters.end_character='';
 
