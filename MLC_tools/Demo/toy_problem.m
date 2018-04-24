@@ -40,7 +40,6 @@ if nargin==4
     ylabel('$\sqrt{(b-K(s))^2}$','fontsize',16,'interpreter','latex')
     set(gcf,'PaperPositionMode','auto')
     grid on
-set(gcf,'Position',[100 500 600 500])
 end
     
 
